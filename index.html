@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/address-book-solid.svg">
+    <link rel="stylesheet" href="./css/bootstrap5.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Address Book</title>
+</head>
+
+<body>
+    <div class="container-xl">
+
+        <header>
+            <!-- navbar -->
+            <nav class="navbar fixed-top bg-body-tertiary">
+                <div class="container">
+                    <a href="#" class="navbar-brand d-flex align-items-center gap-1">
+                        <img class="navbar-logo rounded-circle" src="./img/logo.png" alt="navbar-logo"
+                            title="Creative Output Design and Engineering"> <span
+                            class="text-info fw-bold d-none">Creative
+                            Output
+                            Design and
+                            Engineering</span>
+                    </a>
+
+                    <ul class="navbar-nav fs-4">
+                        <li class="nav-item">
+                            The Address Book
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+
+        <main class="main row">
+            <section class="col-sm-12 col-lg-4">
+                <div class="info">
+                    <form>
+                        <fieldset>
+                            <legend>
+                                <h3>Personal informations</h3>
+                            </legend>
+
+                            <div class="profile row">
+                                <img src="./img/picture.jpg" id="profile-picture"
+                                    class="profile-picture img-fluid col-4" alt="profile-picture">
+                                <div class="col-8 d-flex align-items-end gap-2">
+                                    <!-- An hidden file input to target with the button Upload -->
+                                    <input type="file" id="fileUpload" class="d-none" accept="image/*"
+                                        onchange="handleFileUpload(event)">
+                                    <label for="fileUpload" class="btn btn-outline-secondary w-50">Upload
+                                        Picture</label>
+                                    <!-- <button type="button" class="btn btn-outline-secondary w-50">Generate Picture</button> -->
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <label for="first-name" class="col-sm-12 col-md-4 col-form-label">First name: </label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input type="text" class="form-control" id="first-name"
+                                        placeholder="Enter First name" required>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <label for="last-name" class="col-sm-12 col-md-4 col-form-label">Last name:</label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input type="text" class="form-control" id="last-name" placeholder="Enter Last name"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <label for="email" class="col-sm-12 col-md-4 col-form-label">Email address:</label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <label for="phone" class="col-sm-12 col-md-4 col-form-label">Phone Number:</label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input type="tel" class="form-control" id="phone" placeholder="Enter phone number"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <label for="dob" class="col-sm-12 col-md-4 col-form-label">Date of Birth:</label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input type="date" class=" form-control" id="dob" name="dob">
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <label for="gender" class="col-sm-12 col-md-4 col-form-label">Gender:</label>
+                                <div class="col-sm-12 col-md-8">
+                                    <select class="form-select" id="gender" required>
+                                        <option selected>Choose the gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Non-Binary">Non-Binary</option>
+                                        <option value="Transgender">Transgender</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <p class="col-4"></p>
+                                <div class="col-sm-12 col-md-8">
+                                    <button type="submit" id="newContact" class="btn btn-secondary"
+                                        onclick="addContact()">Add new
+                                        contact</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+
+            <hr class="mt-5 d-lg-none">
+
+            <section class="contacts col-sm-12 col-lg-8 d-flex flex-column justify-content-between border-start">
+                <div class="table-responsive">
+                    <h3>List of Contacts</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Check</th>
+                                <th scope="col">Picture</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Date of Birth</th>
+                                <th scope="col">Gender</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contacts">
+                            <!-- Contacts will be added dynamically here -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="d-flex justify-content-between pt-5">
+                    <button id="saveButton" class="btn btn-outline-secondary w-25">
+                        Save Contacts
+                    </button>
+                    <button id="eraseSelectedButton" class="btn btn-outline-secondary w-25">
+                        Erase Selected
+                    </button>
+                    <button id="emptyAllButton" class="btn btn-outline-secondary w-25">
+                        Empty Contacts
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="container-fluid fixed-bottom bg-secondary">
+            <div class="text-center px-3 py-1 text-light">
+                <p class="mb-0"> The address book of the ficticious company "Creative Output Design and
+                    Engineering"</p>
+                <p class="mb-0">&copy;2024. By JUNIOR JUSMÉ.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JS -->
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>

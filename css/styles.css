@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+/* body {
+    min-height: 100vh;
+} */
+
+.navbar-logo {
+    width: 4rem;
+}
+
+.navbar {
+    padding: 0;
+    margin: 0;
+}
+
+/* .container-xxl,
+.main {
+    min-height: 100%;
+} */
+
+section {
+    padding-top: 71px;
+    padding-bottom: 4rem;
+}
+
+@media(max-width:991px) {
+    .contacts {
+        padding-top: 0;
+
+    }
+}
+
+table td {
+    vertical-align: middle;
+}
+
+footer p {
+    font-size: 0.7rem;
+}
